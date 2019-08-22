@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Canvas-Start</title>
     <style>
-        /* #demo{
-            width:1200px;
-            height:1200px;
-        } */
+        #demo{
+            /* width:1200px;
+            height:1200px; */
+            border:1px solid pink;
+        }
     </style>
 </head>
 <body>
@@ -20,18 +21,24 @@
     <script>
         //第一步 拿到canvas标签
         var canvas = document.getElementById('demo');
-        //第二步 拿到canvas上下文  context()就是上下文 上下文是一个点???
+        canvas.width = 600;
+        canvas.height = 600;
+        // canvas.style.height = 1200;  //这样就和在style里面设置是一摸一样的了
+        //第二步 拿到canvas上下文  context()就是上下文 上下文是一个点??? 上下文是使用API的接口的集合
         var ctx = canvas.getContext('2d');  //'webgl' 是3d
         //第三步 根据坐标系绘制
         ctx.moveTo(100,100);  //x=100, y=100
         ctx.lineTo(200,100);  //x=200, y=100
         ctx.lineTo(100,200);  //x=100, y=200
 
+        ctx.closePath();
+        //设置描边的样式
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = 'rgba(25,244,210,0.9)';   //可以使用任何css的颜色
         ctx.stroke();
 
-        window.onload = function(){
-            
-        }
+        ctx.fillStyle = 'green';
+        ctx.fill();
     </script>
 </body>
 </html>
