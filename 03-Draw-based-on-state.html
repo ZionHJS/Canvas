@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drawing-State</title>
+</head>
+<body>
+    <div id="container">
+        <canvas id="cavsElem">
+            Please update your browser!!!
+        </canvas>
+    </div>
+
+    <script>
+        (function(){
+            var canvas = document.querySelector('#cavsElem');
+            var ctx = canvas.getContext('2d');
+
+            canvas.width = 600;
+            canvas.height = 600;
+            canvas.style.border = "1px solid #000";
+
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 12;
+            //first line
+            ctx.beginPath();  //beginPath 代表开启一个新状态 状态里面:存的当前状态里面的绘制样式
+            ctx.moveTo(100, 100);
+            ctx.lineTo(300, 100);
+            ctx.stroke();  
+            
+            //second line
+            ctx.beginPath();  //beginPath 代表开启一个新状态
+            ctx.strokeStyle = 'green';
+            ctx.moveTo(100, 200);
+            ctx.lineTo(300, 200);
+            ctx.stroke();
+
+            //third line
+            ctx.beginPath();  //beginPath 代表开启一个新状态
+            ctx.strokeStyle = 'yellow';
+            ctx.moveTo(100, 300);
+            ctx.lineTo(300, 300);
+            ctx.stroke();
+        }());
+    </script>
+</body>
+</html>
