@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas-Start</title>
+    <style>
+        /* #demo{
+            width:1200px;
+            height:1200px;
+        } */
+    </style>
+</head>
+<body>
+    <!-- canvas better use tag-style and JS-style not using css-style-->
+    <canvas id="demo" width="600" height="600">
+    </canvas>
+    
+    <script>
+        //第一步 拿到canvas标签
+        var canvas = document.getElementById('demo');
+        //第二步 拿到canvas上下文  context()就是上下文 上下文是一个点???
+        var ctx = canvas.getContext('2d');  //'webgl' 是3d
+        //第三步 根据坐标系绘制
+        ctx.moveTo(100,100);  //x=100, y=100
+        ctx.lineTo(200,100);  //x=200, y=100
+        ctx.lineTo(100,200);  //x=100, y=200
+
+        ctx.stroke();
+
+        window.onload = function(){
+            
+        }
+    </script>
+</body>
+</html>
