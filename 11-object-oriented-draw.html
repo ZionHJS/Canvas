@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src='./src/js/Sprite.js'></script>
-    
+
     <title>Object-Oriented-Draw</title>
 </head>
 
@@ -28,7 +28,16 @@
             //封装一个对象出来
             //属性:width, height, imgSr speed dir
             //行为:render changeDir
-            
+            var s = new Sprite({
+                x:300,
+                y:300,
+                w:80,
+                h:65*2,
+                fps:6,
+                originW:40,
+                originH:65,
+                imgSrc:'./src/img/dog.jpg'
+            });
         }());
     </script>
 </body>

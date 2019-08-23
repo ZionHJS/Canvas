@@ -10,8 +10,8 @@ Sprite.prototype = {
         this.h = option.h || 65;
 
         this.fps = option.fps || 10;  //frame per second 
-        this.originW = 40;
-        rhis.originH = 65;
+        this.originW = option.originW || 40;
+        this.originH = option.originH || 65;
 
         this._dirIndex = 0;  //direction
         this._imgSrc = option.imgSrc || '';
@@ -38,8 +38,11 @@ Sprite.prototype = {
                     ,self.x
                     ,self.y
                     ,self.w
-                    ,self.h)
-            }, self.fps);   //this => img
+                    ,self.h);
+                    
+                    frameIndex ++;
+                    frameIndex %= 4;
+            }, 1000/self.fps);   //this => img
         }
     }
 }
