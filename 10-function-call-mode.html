@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Function-Call-Mode</title>
+</head>
+<body>
+    <script>
+        //1
+        function add(a,b){
+            console.log(this);
+            return a+b;
+        }
+        add();  //this => window
+
+        //2
+        function Cat(){
+            this.show = function(){
+                console.log(this);
+            }
+        }
+        var c = new Cat(); 
+        c.show();  //对象调用自己的方法
+
+        //3
+        function Cat(){
+            this.show = function(){
+                console.log(this);
+            }
+        }
+        var c = new Cat(); //c === this //true
+    </script>
+</body>
+</html>
