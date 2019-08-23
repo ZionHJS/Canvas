@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>object-oriented-2</title>
+</head>
+<body>
+    <script>
+        //对象就是属性和方法的集合体
+        
+        function Cat(option){
+            this._init(option);
+            // this.age = option.age;
+            // this.x = option.x;
+            // this.show = function(){
+            // }
+        }
+        //让Cat()的原型变成我们新定义的一个对象
+        Cat.prototype= {
+            _init:function(option){
+                this.age = option.age || '';
+            }
+            show:function(){
+                console.log(this.age);
+            }
+        };
+        //把构造函数的方法都设置到构造函数的原型上去
+        // Cat.prototype.show = function(){
+        //     console.log(this.age);
+        // };
+
+        var cat = new Cat({x:19, age:18});
+        var cat1 = new Cat({x:20, age:21});
+
+        cat.age = 20;
+        cat1.age = 22;
+    </script>
+</body>
+</html>
