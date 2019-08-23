@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='./src/js/Sprite.js'></script>
+    
+    <title>Object-Oriented-Draw</title>
+</head>
+
+<body>
+    <div>
+        <canvas id="cavsElem">
+        </canvas>
+    </div>
+
+    <script>
+        (function () {
+            var canvas = document.querySelector('#cavsElem');
+            var ctx = canvas.getContext('2d');
+
+            canvas.width = 600;
+            canvas.height = 600;
+            canvas.style.border = "1px solid #000";
+
+            //封装一个对象出来
+            //属性:width, height, imgSr speed dir
+            //行为:render changeDir
+            
+        }());
+    </script>
+</body>
+
+</html>
