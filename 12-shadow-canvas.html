@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas-Shadow</title>
+</head>
+
+<body>
+    <div>
+        <canvas id="cavsElem">
+        </canvas>
+    </div>
+
+    <script>
+        (function () {
+            var canvas = document.querySelector('#cavsElem');
+            var ctx = canvas.getContext('2d');
+
+            canvas.width = 900;
+            canvas.height = 900;
+            canvas.style.border = "1px solid #000";
+
+            ctx.fillStyle = "rgba(255,0,0,.9)";
+            ctx.shadowColor = "teal";
+            ctx.shadowBlur = 10;
+            ctx.shafowOffsetX = 10;
+            ctx.shadowOffsetY = 10;
+            ctx.fillRect(100,100,100,100);   //.fillRect => create a rectangle
+
+            //create a linear gradient
+            var grad = ctx.createLinearGradient(0,0,170,0);
+            grad.addColorStop(0,'black');
+            grad.addColorStop(0.5,'red');
+            grad.addColorStop(1,'white');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0,300,300,300);
+
+            //create a radial gradient
+            var grad = ctx.createRadialGradient(300,300,10,300,300,200);
+            grad.addColorStop(0,'teal');
+            grad.addColorStop(0.5,'navy');
+            grad.addColorStop(1,'red');
+            ctx.fillStyle = grad;
+            ctx.fillRect(300,300,300,300);
+
+            
+        }());
+    </script>
+</body >
+</html >

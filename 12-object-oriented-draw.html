@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='./src/js/castRect.js'></script>
+
+    <title>Object-Oriented-Draw</title>
+</head>
+
+<body>
+    <div>
+        <canvas id="cavsElem">
+        </canvas>
+    </div>
+
+    <script>
+        (function () {
+            var canvas = document.querySelector('#cavsElem');
+            var ctx = canvas.getContext('2d');
+
+            canvas.width = 600;
+            canvas.height = 600;
+            canvas.style.border = "1px solid #000";
+
+            var rect = new itCastRect({
+                x:100,
+                y:100,
+                w:200,
+                h:200,
+                opacity:.6,
+                rotation:45,
+                scaleX: 1.5,
+                scaleY:1.8,
+                fillStyle:'purple',
+                strokeStyle:'yellow',
+            });
+            rect.render(ctx);
+
+            // for(var i=0; i<100; i++){
+            //     var r = new itCastRect({
+            //         x:Math.random()*100,
+            //         y:Math.random()*100,
+            //         w:Math.random()*100,
+            //         h:Math.random()*100,
+                    
+            //         rotation:Math.random()*90,
+            //         opacity:Math.random()
+            //     });
+            // r.render(ctx);
+            // }
+
+            setInterval(function(){
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                rect.x += 10;
+                rect.render(ctx);
+            },900);
+        }());
+    </script>
+</body>
+
+</html>
