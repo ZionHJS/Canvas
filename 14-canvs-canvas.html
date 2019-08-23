@@ -23,7 +23,44 @@
 
             canvas.width = 600;
             canvas.height = 600;
-            canvas.style.border = "1px solid #000";
+            canvas.style.border = "1px solid blue";
+
+            var canvasHide = document.createElement('canvas');
+            canvasHide.width = canvas.width;
+            canvasHide.height = canvas.height;
+            canvas.style.border = "1px solid red";
+            var ctxHide =canvas.getContext('2d');
+
+            var rect = new itCastRect({
+                x: 100,
+                y: 100,
+                w: 200,
+                h: 200,
+                opacity: .6,
+                rotation: 45,
+                scaleX: 1.5,
+                scaleY: 1.8,
+                fillStyle: 'purple',
+                strokeStyle: 'yellow',
+            });
+            rect.render(ctxHide);
+
+            var rect = new itCastRect({
+                x: 360,
+                y: 360,
+                w: 300,
+                h: 300,
+                opacity: .6,
+                rotation: 45,
+                scaleX: .6,
+                scaleY: .6,
+                fillStyle: 'purple',
+                strokeStyle: 'yellow',
+            });
+            rect.render(ctxHide);
+
+            //批量绘制
+            ctx.drawImage(canvasHide,0,0);
         }());
     </script>
 </body>

@@ -14,28 +14,39 @@
     <div>
         <canvas id="cavsElem">
         </canvas>
+
+        <canvas id="cavsElem2">
+        </canvas>
     </div>
+
+    <img src="" id="imgID" alt="">
 
     <script>
         (function () {
             var canvas = document.querySelector('#cavsElem');
+            var canvas2 = document.querySelector('#cavsElem2');
             var ctx = canvas.getContext('2d');
+            var ctx2 = canvas2.getContext('2d');
 
             canvas.width = 600;
             canvas.height = 600;
             canvas.style.border = "1px solid #000";
 
+            canvas2.width = 600;
+            canvas2.height = 600;
+            canvas2.style.border = "1px solid red";
+
             var rect = new itCastRect({
-                x:100,
-                y:100,
-                w:200,
-                h:200,
-                opacity:.6,
-                rotation:45,
+                x: 100,
+                y: 100,
+                w: 200,
+                h: 200,
+                opacity: .6,
+                rotation: 45,
                 scaleX: 1.5,
-                scaleY:1.8,
-                fillStyle:'purple',
-                strokeStyle:'yellow',
+                scaleY: 1.8,
+                fillStyle: 'purple',
+                strokeStyle: 'yellow',
             });
             rect.render(ctx);
 
@@ -45,18 +56,29 @@
             //         y:Math.random()*100,
             //         w:Math.random()*100,
             //         h:Math.random()*100,
-                    
+
             //         rotation:Math.random()*90,
             //         opacity:Math.random()
             //     });
             // r.render(ctx);
             // }
 
-            setInterval(function(){
+            //turn canvas into an image
+            //console.log(canvas.toDataURL('image/jpeg', .6));
+
+            setInterval(function () {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 rect.x += 10;
                 rect.render(ctx);
-            },900);
+
+                //turn a canvas to a image
+                var img = document.getElementById('imgID');
+                img.src = canvas.toDataURL('image/png', .6);
+
+                //let one canvas render to another canvas
+                ctx2.drawImage(canvas, 0, 0);
+                // ctx2.clearRect(0, 0, canvas.width, canvas.height);
+            }, 600);
         }());
     </script>
 </body>
