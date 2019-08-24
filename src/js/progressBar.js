@@ -26,7 +26,7 @@ ProgressBar.prototype = {
         var outerRect = new Konva.Rect({
             x:this.x,
             y:this.y,
-            width:1/2*this.w,
+            width:this.w,
             height:this.h,
             cornerRadius:(1/2)*this.h,
             stroke:this.strokeStyle,
