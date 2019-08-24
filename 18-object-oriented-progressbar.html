@@ -28,22 +28,31 @@
         //第三步 把层添加到舞台上去
         stage.add(layer);
         //可以不停的添加多个层:背景层，动画层，光照层
-        
+
         //中心点坐标
         var cenX = stage.width() / 2;
         var cenY = stage.height() / 2;
 
-        var p = new ProgressBar({
-            x:1/8*stage.width(),
-            y:4/9*stage.height(),
-            w:3/4*stage.width(),
-            h:1/12*stage.height(),
-            fillStyle:'red',
-            strokeStyle:'blue'
-        });
+        var option = {
+            x: 1 / 8 * stage.width(),
+            y: 4 / 9 * stage.height(),
+            w: 3 / 4 * stage.width(),
+            h: 1 / 12 * stage.height(),
+            fillStyle: 'red',
+            strokeStyle: 'blue'
+        }
+
+        //创建进度条对象实例
+        var p = new ProgressBar(option);
+
+        //把进度条放到层中
         p.addToGroupOrLayer(layer);
 
+        //渲染层
         layer.draw();
+
+        //changeValue
+        p.changeValue(.3);
     </script>
 </body>
 
