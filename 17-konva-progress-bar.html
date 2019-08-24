@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./src/lib/konva-master/konva.js"></script>
+    <script src="./src/js/progressBar.js"></script>
+    <title>Konva-Progress-Bar</title>
+</head>
+
+<body>
+    <!-- 存放canvas画布的容器，这个必须要有 -->
+    <div id="container">
+    </div>
+
+    <script>
+        //第一步 创建舞台
+        var stage = new Konva.Stage({
+            container: 'container',
+            width: window.innerWidth,  //设置舞台的宽高
+            height: window.innerHeight
+        });
+
+        //第二步 创建一个层
+        var layer = new Konva.Layer();
+        //第三步 把层添加到舞台上去
+        stage.add(layer);
+        //可以不停的添加多个层:背景层，动画层，光照层
+        
+        //中心点坐标
+        var cenX = stage.width() / 2;
+        var cenY = stage.height() / 2;
+
+        //第四步:创建形状对象 然后把形状放到层上去
+        var innerRect = new Konva.Rect({
+            x:1/8*stage.width(),
+            y:4/9*stage.height(),
+            width:3/4*stage.width(),
+            height:1/12*stage.height(),
+            fill:'#cdcd00', //只要设置了fill属性，那么konva就会填充这个矩形
+            cornerRadius:(1/24)*stage.height(),
+        });
+        
+        //第五步:把矩形放到层里
+        layer.add(innerRect);
+
+        //添加一个外边框的矩形
+        var outerRect = new Konva.Rect({
+            x:1/8*stage.width(),
+            y:4/9*stage.height(),
+            width:3/4*stage.width(),
+            height:1/12*stage.height(),
+            cornerRadius:(1/24)*stage.height(),
+            stroke:'#ccc',
+            strokeWidth:4,
+        });
+        layer.add(outerRect);
+
+        //第六步:把层渲染到舞台上去
+        layer.draw();
+
+        //对象: 属性和方法的集合
+        //进度条的属性: width, height, x, y, innerStyle, outerStyle, cornerRadius
+        //行为: 修改进度条的进度 changeValue(val)   
+        //把进度条添加到层: addToGroupOrLayer(arg)
+    </script>
+</body>
+
+</html>
