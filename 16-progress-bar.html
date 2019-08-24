@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./src/lib/konva-master/konva.js"></script>
+    <title>Progress-Bar</title>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+
+    <script>
+        //第一步 创建舞台
+        var stage = new Konva.Stage({
+            container: 'container',
+            width: window.innerWidth,  //全屏
+            height: window.innerHeight
+        });
+
+        //第二步 创建一个层
+        var layer = new Konva.Layer();
+        //第三步 把层添加到舞台上去
+        stage.add(layer);
+
+        //中心点坐标
+        var cenX = stage.width()/2;
+        var cenY = stage.height()/2;
+
+        var x = 1/8*stage.width();
+        var y = cenY;
+        
+        var height = 1/12*stage.height();
+        var maxWidth = 3/4*stage.width();      
+        //绘制一个进度条
+        var innerRect = new Konva.Rect({
+            x:x,
+            y:y,
+            width:100,
+            height:height,
+            opacity:.7,
+            fill:'lightblue',
+            cornerRadius:height/6,
+        });
+        //把内部的矩形放到层里面
+        layer.add(innerRect);
+
+        //外部的边框矩形
+        var outerRect = new Konva.Rect({
+            x:x,
+            y:y,
+            width:maxWidth,
+            height:height,
+            stroke:'navy',
+            strokeWidth:4,
+            cornerRadius:height/6,
+        });
+        layer.add(outerRect);
+        layer.draw();
+
+        //konva动画系统
+        innerRect.to({
+            width:maxWidth,
+            duration:6,
+            opacity:.3,
+            easing:Konva.Easings.StrongEaseInOut,
+        });
+    </script>
+</body>
+
+</html>
