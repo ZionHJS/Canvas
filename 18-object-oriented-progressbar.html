@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./src/lib/konva-master/konva.js"></script>
+    <script src="./src/js/progressBar.js"></script>
+    <title>Object-oriented-Progress-Bar</title>
+</head>
+
+<body>
+    <!-- 存放canvas画布的容器，这个必须要有 -->
+    <div id="container">
+    </div>
+
+    <script>
+        //第一步 创建舞台
+        var stage = new Konva.Stage({
+            container: 'container',
+            width: window.innerWidth,  //设置舞台的宽高
+            height: window.innerHeight
+        });
+
+        //第二步 创建一个层
+        var layer = new Konva.Layer();
+        //第三步 把层添加到舞台上去
+        stage.add(layer);
+        //可以不停的添加多个层:背景层，动画层，光照层
+        
+        //中心点坐标
+        var cenX = stage.width() / 2;
+        var cenY = stage.height() / 2;
+
+        this.x = option.x || 0;
+        this.y = option.y || 0;
+        this.w = option.w || 0;
+        this.h = option.h || 0;
+
+        this.fillStyle = option.fillStyle || 'red';
+        this.fillStyle = option.strokeStyle || 'red';
+
+        var p = new ProgressBar({
+            x:1/8*stage.width(),
+            y:1/2*stage.height(),
+            w:3/4*stage.width(),
+            h:1/12*stage.height(),
+            fillStyle:'red',
+            strokeStyle:'blue'
+        });
+        p.addToGroupOrLayer(layer);
+
+        layer.draw();
+    </script>
+</body>
+
+</html>
