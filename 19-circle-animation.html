@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./src/lib/konva-master/konva.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 存放canvas画布的容器，这个必须要有 -->
+    <div id="container">
+    </div>
+
+    <script>
+        //第一步 创建舞台
+        var stage = new Konva.Stage({
+            container: 'container',
+            width: window.innerWidth,  //设置舞台的宽高
+            height: window.innerHeight
+        });
+
+        //第二步 创建一个层
+        var layer = new Konva.Layer();
+        //第三步 把层添加到舞台上去
+        stage.add(layer);
+        //可以不停的添加多个层:背景层，动画层，光照层
+
+        //中心点坐标
+        var cenX = stage.width() / 2;
+        var cenY = stage.height() / 2;
+
+        //创建背景层
+        var bgLayer = new Konva.Layer();
+        stage.add(bgLayer);
+
+        //绘制背景
+        var innerRadius = 252/2;
+        var outerRadius = 220;
+
+        //create innerCircle
+        var innerCircle = new Konva.Circle({
+            x:cenX,
+            y:cenY,
+            radius:innerRadius,
+            stroke:'#ccc',
+            strokeWidth:1,
+            dash:[10,4],//设置虚线 10实现 4虚线
+        });
+
+        //create outCircle
+        var outerCircle = new Konva.Circle({
+            x:cenX,
+            y:cenY,
+            radius:outerRadius,
+            stroke:'#ccc',
+            strokeWidth:1,
+            dash:[10,4],//设置虚线 10实现 4虚线
+        });
+
+        //create center circle
+        var cenCircle = new Konva.Circle({
+            x:cenX,
+            y:cenY,
+            radius:132/2,
+            fill:'#525A82',
+        });
+
+        //create rign
+        var cenRing = new Konva.Ring({
+            x:cenX,
+            y:cenY,
+            innerRadius:132/2,
+            outerRadius:180/2,
+            fill:'#525A82',
+            opacity:.5,
+        }); 
+
+        //create circle text
+        var cenText = new Konva.Text({
+            x:cenX-180/2,
+            y:cenY,
+            width:180,
+            align:'center',
+            text:'Web-Full-Stack',
+            fontSize:0,
+            fontFamily:'',
+            fontStyle:'bold',
+            fill:'white',
+        });
+
+        bgLayer.add(cenCircle);
+        bgLayer.add(cenRing);
+        bgLayer.add(cenText);
+        bgLayer.add(innerCircle);
+        bgLayer.add(outerCircle);
+
+        //draw
+        bgLayer.draw();
+
+        //Animation Layer
+        var animateLayer = new Konva.Layer();
+        stage.add(animateLayer);
+        //计算圆心点坐标
+        var x0 = cenX + innerRadius*Math.cos(-60*Math.PI/180);
+        var y0 = cenY + innerRadius*Math.sin(-60*Math.PI/180);
+        
+        var c2_html5 = new Konva.Circle({
+            x:x0,
+            y:y0,
+            radius:30,
+            fill:'#FABB48',
+            opacity:.8,
+        });
+        
+        animateLayer.add(c2_html5);
+
+        //draw
+        animateLayer.draw();
+    </script>
+</body>
+
+</html>
