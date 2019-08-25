@@ -66,14 +66,26 @@
             //生成一个矩形
             var rect = new Konva.Rect({
                 x:x0+(1/4+index)*rectWidth,
-                y:y0,
+                y:y0-item.value*height,
                 width:1/2*rectWidth,
-                height:10,
+                height:item.value*height,
                 fill:item.color,
                 opacity:.8,
                 cornerRadius:10,
             });
             layer.add(rect);
+
+            //把百分比的文字放到柱状图的顶部
+            var txt = new Konva.Text({
+                x:x0+(1/4+index)*rectWidth,
+                y:y0-item.value*height-14,
+                fontSize:14,
+                text:item.value*100 + '%',
+                fill:item.color,
+                width:1/2*rectWidth,
+                align:'center'
+            });
+            layer.add(txt);
         });
 
         // for(var i=0; i<data.length; i++){
