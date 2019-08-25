@@ -64,6 +64,7 @@
         //定义矩形和矩形两边的边距宽度
         var rectWidth = width / data.length;
         //绘制柱状图的矩形:遍历每一条数据然后生成一个矩形
+        //forEach 数组的方法 item数组中的元素 index索引值
         data.forEach(function (item, index) {
             //生成一个矩形
             var rect = new Konva.Rect({
@@ -138,7 +139,6 @@
                 item.to({
                     duration: 3,
                     y: y0 - data[index].value * height - 14,
-                    height: data[index].value * height,
                 });
             });
             //动画显示到初始的状态

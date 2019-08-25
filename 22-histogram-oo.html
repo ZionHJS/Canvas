@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='./src/js/histogram.js'></script>
+    <script src='./src/lib/konva-master/konva.js'></script>
+    <title>higtogram-oo</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    </div>
+
+    <script>
+        //创建舞台
+        var stage = new Konva.Stage({
+            container: '.container',
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+        //创建层
+        var layer = new Konva.Layer();
+        stage.add(layer);
+
+        //中心点坐标
+        var cenX = stage.width() / 2;
+        var cenY = stage.height() / 2;
+    </script>
+</body>
+
+</html>
