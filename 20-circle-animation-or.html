@@ -96,32 +96,52 @@
         //把L2Group添加到动画层上去
         animateLayer.add(L2Group);
 
+        //创建一个三环的group
+        var L3Group = new Konva.Group({
+            x:cenX,
+            y:cenY,
+        });
         //创建第三层的圆
         var L3_CircleText_JS = new CircleText({
-            x: cenX + outerRadius * Math.cos(60 * Math.PI / 180),
-            y: cenY + outerRadius * Math.sin(60 * Math.PI / 180),
+            x:outerRadius * Math.cos(60 * Math.PI / 180),
+            y:outerRadius * Math.sin(60 * Math.PI / 180),
             innerRadius: 40,
             outerRadius: 50,
             innerStyle: '#91BFF8',
             outerStyle: '#E1E1E1',
             text: 'JavaScript',
         });
-        L3_CircleText_JS.addToGroupOrLayer(animateLayer);
+        L3_CircleText_JS.addToGroupOrLayer(L3Group);
+        animateLayer.add(L3Group);
         
         //draw
         animateLayer.draw();
 
         var rotateAnglePerSecond = 360;  //每秒钟设置旋转60度
         //Konva的帧动画系统
-        var animate = new Konva.Animation(function(frame){
-            //每隔一段事件执行此方法，类似于setInterval
+        var animate = new Konva.Animation(function(frame){   //每隔一段事件执行此方法，类似于setInterval
             var rotateAngle = 3*rotateAnglePerSecond*frame.timeDiff/1000;
             L2Group.rotate(rotateAngle*Math.PI/180);
             //现在让文字绕自己的圆心反转
-            //首先拿到环上圆的内部组 进行反向旋转
-            L2Group.getChildren()
+            //首先拿到环上的每个圆 进行反向旋转  其实所有都一起旋转了，并没有单独选出了文字
+            L2Group.getChildren().each(function(item,index){
+                item.rotate(-rotateAngle*Math.PI/180);
+            });
+
+            L3Group.rotate(-2*rotateAngle*Math.PI/180);
+            L3Group.getChildren().each(function(item,index){
+                item.rotate(2*rotateAngle*Math.PI/180);
+            });
         },animateLayer);
         animate.start(); //启动动画
+
+        //Konva的事件系统
+        animateLayer.on('mouseover',function(){
+            rotateAnglePerSecond = 120;
+        });
+        animateLayer.on('mouseout',function(){
+            rotateAnglePerSecond = 360;
+        });
     </script>
 </body>
 
