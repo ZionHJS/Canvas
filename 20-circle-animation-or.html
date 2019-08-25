@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./src/lib/konva-master/konva.js"></script>
+    <script src="./src/js/circleText.js"></script>
+    <title>circle-animation-or</title>
+</head>
+
+<body>
+    <!-- 存放canvas画布的容器，这个必须要有 -->
+    <div id="container">
+    </div>
+
+    <script>
+        //第一步 创建舞台
+        var stage = new Konva.Stage({
+            container: 'container',
+            width: window.innerWidth,  //设置舞台的宽高
+            height: window.innerHeight
+        });
+
+        //第二步 创建一个层
+        var layer = new Konva.Layer();
+        //第三步 把层添加到舞台上去
+        stage.add(layer);
+        //可以不停的添加多个层:背景层，动画层，光照层
+
+        //中心点坐标
+        var cenX = stage.width() / 2;
+        var cenY = stage.height() / 2;
+
+        //创建背景层
+        var bgLayer = new Konva.Layer();
+        stage.add(bgLayer);
+
+        //绘制背景
+        var innerRadius = 252 / 2;
+        var outerRadius = 220;
+
+        //create outerCircle
+
+        //创建第1层内圆
+        var cenCircleText = new CircleText({
+            x: cenX,
+            y: cenY,
+            innerRadius: 132 / 2,
+            outerRadius: 180 / 2,
+            innerStyle: '#525A82',
+            outerStyle: '#E1E1E1',
+            text: 'web-full-stack',
+        });
+        cenCircleText.addToGroupOrLayer(bgLayer);
+        //draw
+        bgLayer.draw();
+
+        //Animation Layer
+        var animateLayer = new Konva.Layer();
+        stage.add(animateLayer);
+
+        var L2Group = new Konva.Group({
+            x:cenX,
+            y:cenY
+        })
+        //计算圆心点坐标
+        var x0 = cenX + innerRadius * Math.cos(-60 * Math.PI / 180);
+        var y0 = cenY + innerRadius * Math.sin(-60 * Math.PI / 180);
+
+        //创建第2层外圆
+        var L2_CircleText_CSS3 = new CircleText({
+            x:innerRadius * Math.cos(160 * Math.PI / 180),
+            y:innerRadius * Math.sin(160 * Math.PI / 180),
+            innerRadius: 30,
+            outerRadius: 40,
+            innerStyle: '#FACED6',
+            outerStyle: '#E1E1E1',
+            text: 'CSS3',
+        });
+        L2_CircleText_CSS3.addToGroupOrLayer(L2Group);
+
+        //创建第2个2层的外圆
+        var L2_CircleText_html5 = new CircleText({
+            x:innerRadius * Math.cos(-60 * Math.PI / 180),
+            y:innerRadius * Math.sin(-60 * Math.PI / 180),
+            innerRadius: 30,
+            outerRadius: 40,
+            innerStyle: 'orange',
+            outerStyle: '#E1E1E1',
+            text: 'html5',
+        });
+        L2_CircleText_html5.addToGroupOrLayer(L2Group);
+
+        //把L2Group添加到动画层上去
+        animateLayer.add(L2Group);
+
+        //创建第三层的圆
+        var L3_CircleText_JS = new CircleText({
+            x: cenX + outerRadius * Math.cos(60 * Math.PI / 180),
+            y: cenY + outerRadius * Math.sin(60 * Math.PI / 180),
+            innerRadius: 40,
+            outerRadius: 50,
+            innerStyle: '#91BFF8',
+            outerStyle: '#E1E1E1',
+            text: 'JavaScript',
+        });
+        L3_CircleText_JS.addToGroupOrLayer(animateLayer);
+        
+        //draw
+        animateLayer.draw();
+
+        var rotateAnglePerSecond = 360;  //每秒钟设置旋转60度
+        //Konva的帧动画系统
+        var animate = new Konva.Animation(function(frame){
+            //每隔一段事件执行此方法，类似于setInterval
+            var rotateAngle = 3*rotateAnglePerSecond*frame.timeDiff/1000;
+            L2Group.rotate(rotateAngle*Math.PI/180);
+            //现在让文字绕自己的圆心反转
+            //首先拿到环上圆的内部组 进行反向旋转
+            L2Group.getChildren()
+        },animateLayer);
+        animate.start(); //启动动画
+    </script>
+</body>
+
+</html>
