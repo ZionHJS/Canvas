@@ -18,13 +18,13 @@ HistogramChart.prototype = {
             x:this.x,
             y:this.y,
         });
-        //放矩形的组
+        //放矩形的组到group
         this.rectGroup = new Konva.Group({
             x:0,
             y:0,
         });
         this.group.add(this.rectGroup);
-        //放百分比文字的组
+        //放百分比文字的组到group
         this.textPercentGroup = new Konva.Group({
             x:0,
             y:0
