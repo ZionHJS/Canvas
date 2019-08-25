@@ -91,8 +91,30 @@ HistogramChart.prototype = {
             // group.add(textBottom);
             self.group.add(txtBottom);
         });
-    }
-    addToGroupOrLayer:function(arg){
-        arg.add(this.group);
+    },
+    addToGroupOrLayer:function(layer){
+        layer.add(this.group);
+    },
+    playAnimate:function(){
+        var self = this;
+        //让柱状图清零 y => y0 height:0
+        this.rectGroup.getChildren().each(function(item,index){
+            item.y(0);
+            item.height(0);
+            //做一个还原动画
+            item.to({
+                duration:1,
+                y:-self.data[index].value*self.h,
+                height:self.data[index].value*self.h,
+            });
+        });
+        //让文字也有个动画
+        this.textPercentGroup.getChildren().each(function(item,index){
+            item.y(-14);
+            item.to({
+                duration:1,
+                y:-self.data[index].value*self.h-14,
+            });
+        });
     }
 }

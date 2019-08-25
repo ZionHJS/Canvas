@@ -36,6 +36,32 @@
         //中心点坐标
         var cenX = stage.width() / 2;
         var cenY = stage.height() / 2;
+
+        //data of the Histogram
+        var data = [
+            { name: 'frontEnd', value: ".9", color: 'green' },
+            { name: 'PHP', value: ".3", color: 'blue' },
+            { name: 'Java', value: ".7", color: 'red' },
+            { name: 'UI', value: ".9", color: 'orange' },
+            { name: 'IOS', value: ".4", color: 'purple' },
+            { name: 'Android', value: ".8", color: 'pink' },
+        ];
+
+        var h = new HistogramChart({
+            x:1/8*stage.width(),
+            y:3/4*stage.height(),
+            w:3/4*stage.width(),
+            h:1/2*stage.height(),
+            data:data,
+        });
+
+        h.addToGroupOrLayer(layer);
+
+        layer.draw();
+
+        stage.on('contentClick',function(){
+            h.playAnimate();
+        });
     </script>
 </body>
 
