@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='./src/lib/konva-master/konva.js'></script>
+    <script src='./src/js/pieChart.js'></script>
+    <title>pieChart</title>
+</head>
+
+<body>
+    <div class="container">
+    </div>
+
+    <script>
+        //创建舞台
+        var stage = new Konva.Stage({
+            container: '.container',
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+        //创建层
+        var layer = new Konva.Layer();
+        stage.add(layer);
+    </script>
+</body>
+
+</html>
