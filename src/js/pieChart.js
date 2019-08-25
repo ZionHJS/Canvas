@@ -88,10 +88,9 @@ PieChart.prototype = {
         }
         //展示当前索引对应的动画
         var item = this.wedgeGroup.getChildren()[this._animteIndex];
-
         item.to({
             angle: this.data[this._animteIndex].value * 360,
-            duration: 2 * this.data[this._animteIndex.value,
+            duration:this.data[this._animteIndex].value,
             onFinish: function() {
                 self._animteIndex++;
                 if (self._animteIndex >= self.data.length) {
