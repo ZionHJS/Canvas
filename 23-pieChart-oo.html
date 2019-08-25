@@ -24,6 +24,34 @@
         //创建层
         var layer = new Konva.Layer();
         stage.add(layer);
+
+        //中心点坐标
+        var cenX = stage.width() / 2;
+        var cenY = stage.height() / 2;
+
+        //data of the PieChart
+        var data = [
+            { name: 'frontEnd', value: ".15", color: 'green' },
+            { name: 'PHP', value: ".15", color: 'blue' },
+            { name: 'Java', value: ".2", color: 'red' },
+            { name: 'UI', value: ".3", color: 'orange' },
+            { name: 'IOS', value: ".1", color: 'purple' },
+            { name: 'Android', value: ".1", color: 'pink' },
+        ];
+
+        var p = new PieChart({
+            x: cenX,
+            y: cenY,
+            r: 100,
+            data: data,
+        });
+
+        p.addToGroupOrLayer(layer);
+
+        layer.draw();
+
+        P.playAnimate();
+
     </script>
 </body>
 
