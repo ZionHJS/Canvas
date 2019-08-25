@@ -31,16 +31,28 @@ CircleText.prototype = {
             innerRadius:this.innerRadius,
             outerRadius:this.outerRadius,
             fill:this.outerStyle,
-            opacity:0.3,
+            opacity:0.2,
         });
         this.group.add(outerRing);
+
+        //初始化一个虚线轨道圆
+        var circlePath = new Konva.Circle({
+            x:cenX,
+            y:cenY,
+            radius:this.outerRadius + (180 / 2),
+            dash:[10,4],
+            strokeStyle:'blue',
+            stokeWidth:4,
+        });
+        this.group.add(circlePath);
+        
         //初始化一个文字
         var txt = new Konva.Text({
             x:0-this.outerRadius,
             y:-7,
             width:this.outerRadius*2,
             fill:"#fff",
-            fontSize:'17',
+            fontSize:17,
             fontStyle:'bold',
             text:this.text,
             align:'center',
