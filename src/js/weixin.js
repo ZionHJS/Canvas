@@ -5,8 +5,15 @@ var stage = new Konva.Stage({
     height: window.innerHeight
 });
 
+// 总的思路:
+// 上滑:让索引+1 执行scenceBuilder数组中的下一个场景的play()
+// 下滑:让索引-1 执行scenceBuilder数组中的下一个场景的play()
+
+//场景的构造器
 var scenceBuilder = [builderHtml5Scence,builderC3Scence,builderDemoScence];
+//当前场景的执行的索引
 var scenceIndex = 0;
+
 //构造h5的场景
 function builderHtml5Scence(){
     return new ItcastScene({
@@ -37,7 +44,6 @@ function addStageEvent() {
         }
         console.log(e);   //evt就是e这个对象的的属性
     });
-
     stage.on('contentMousemove contentTouchmove', function (e) {
         if (e.type == 'contentMousedown') {
             console.log(e.evt.screenX + ' ' + e.evt.screenY);   //evt就是e这个对象的的属性
@@ -56,6 +62,7 @@ function addStageEvent() {
             //上滑动 执行下一个场景play()
             scenceIndex = scenceIndex >= scenceBuilder.length-1 ? scenceBuilder.length-1 : scenceIndex+1;
         }
+        scenceBuilder[scenceIndex]().play();
     });
 }
 
