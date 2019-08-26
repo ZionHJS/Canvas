@@ -12,15 +12,15 @@ function ItcastScene(options){
     this.post = options.post || ItcastScene.voidFn;
 
     //当前场景的所有的层
-    this.layer = options.layers ||s [new Konva.Layer()];
+    this.layer = options.layers || [new Konva.Layer()];
 
     this.name = options.name || '';
 
     this.init();
 }
 
-ItcastSecene.prototype = {
-    constructor:ItcastSecene,
+ItcastScene.prototype = {
+    constructor:ItcastScene,
     voidFn:function(){},
     //当前场景
     CurrentScence:null,
@@ -30,7 +30,7 @@ ItcastSecene.prototype = {
             //doPre
         var doPre = function doPre(){
             //把当前场景中的所有的层添加到舞台
-            self.layers.forEach(function(val){
+            self.layer.forEach(function(val){
                 self.stage.add(val);
             });
             //设置挡墙场景为this
