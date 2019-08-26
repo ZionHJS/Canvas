@@ -3,7 +3,7 @@ function PieChart(option) {
 }
 PieChart.prototype = {
     _init: function (option) {
-        this.x = option.x || 0;
+        this.x = option.x || 0;   //饼状图的原点坐标
         this.y = option.y || 0;   //饼状图的原点坐标
         this.r = option.r || 0;   //饼状图的半径
         this.data = option.data || [];
@@ -32,7 +32,7 @@ PieChart.prototype = {
 
         //把每条数据创建一个扇形
         this.data.forEach(function (item, index) {
-            var angle = 360 * item.value;   //当前善心的角度
+            var angle = 360 * item.value;   //当前扇形的角度
             //创建一个扇形
             var wedge = new Konva.Wedge({
                 x: 0,
@@ -49,13 +49,13 @@ PieChart.prototype = {
 
             //绘制百分比的文本
             var text = new Konva.Text({
-                x: (self.r + 20) * Math.cos(Math.PI / 180 * textAngle),
-                y: (self.r + 20) * Math.sin(Math.PI / 180 * textAngle),
+                x: (self.r + 30) * Math.cos(Math.PI / 180 * textAngle),  //1rad = 180/PI
+                y: (self.r + 30) * Math.sin(Math.PI / 180 * textAngle),
                 text: item.value * 100 + '%',
                 fill: item.color,
             });
 
-            //根据角度判断设置文字的位置
+            //根据角度判断设置文字的位置 使左边的文字向左移动一些
             if (textAngle > 90 && textAngle < 270) {
                 text.x(text.x() - text.getWidth());
             }
@@ -63,13 +63,14 @@ PieChart.prototype = {
             self.textGroup.add(text);
             tempAngle += angle;
         });
+
         //绘制圆环的线
         var cir = new Konva.Circle({
             x: 0,
             y: 0,
-            radius: this.r + 10,
+            radius: this.r+3,
             stroke: '#ccc',
-            strokeWidth: 2
+            strokeWidth: 1
         });
         this.group.add(cir);
 
@@ -98,7 +99,7 @@ PieChart.prototype = {
                     self._animteIndex = 0;  //让这个索引清零
                     return;  //return会把整个循环结束
                 }
-                //继续执行当前方法 播放下一个动画
+                //继续执行当前方法 播放下一个动画 知道return停止
                 self.playAniamte();
             }
         });
